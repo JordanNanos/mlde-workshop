@@ -1,0 +1,13 @@
+description: vllm-mixtral-awq
+bind_mounts:
+  - container_path: /root/.cache/huggingface
+    host_path: /root/.cache/huggingface
+    propagation: rprivate
+    read_only: false
+resources:
+  slots: 1
+environment:
+  proxy_ports:
+    - proxy_port: 8002
+      proxy_tcp: true
+  image: jnanos/det-vllm:0.1

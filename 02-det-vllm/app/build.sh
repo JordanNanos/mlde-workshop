@@ -1,0 +1,1 @@
+docker build -t front:0.1b .
