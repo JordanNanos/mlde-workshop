@@ -1,0 +1,110 @@
+__internal:
+  audit_logging_enabled: false
+  external_sessions:
+    jwt_key: ''
+    login_uri: ''
+    logout_uri: ''
+  proxied_servers: null
+cache:
+  cache_dir: /var/cache/determined
+checkpoint_storage:
+  host_path: /root/.determined
+  propagation: null
+  save_experiment_best: 0
+  save_trial_best: 1
+  save_trial_latest: 1
+  storage_path: determined-checkpoint
+  type: shared_fs
+cluster_name: ''
+config_file: ''
+db:
+  host: localhost
+  migrations: file:///usr/share/determined/master/static/migrations
+  name: determined
+  password: '********'
+  port: '5432'
+  ssl_mode: disable
+  ssl_root_cert: ''
+  user: postgres
+enable_cors: false
+feature_switches: []
+launch_error: true
+log:
+  color: true
+  level: info
+logging:
+  type: default
+notebook_timeout: null
+observability:
+  enable_prometheus: false
+port: 3389
+reserved_ports: null
+resource_manager:
+  client_ca: ''
+  default_aux_resource_pool: a100
+  default_compute_resource_pool: a100
+  no_default_resource_pools: false
+  require_authentication: false
+  scheduler:
+    allow_heterogeneous_fits: false
+    fitting_policy: best
+    type: fair_share
+  type: agent
+resource_pools:
+- agent_reattach_enabled: false
+  agent_reconnect_wait: 25s
+  description: ''
+  kubernetes_namespace: ''
+  max_aux_containers_per_agent: 100
+  pool_name: a100
+  provider: null
+  task_container_defaults: null
+root: /usr/share/determined/master
+security:
+  authz:
+    _strict_ntsc_enabled: false
+    fallback: basic
+    rbac_ui_enabled: null
+    strict_job_queue_control: false
+    type: basic
+    workspace_creator_assign_role:
+      enabled: true
+      role_id: 2
+  default_task:
+    gid: 0
+    group: root
+    id: 0
+    uid: 0
+    user: root
+    user_id: 0
+  ssh:
+    rsa_key_size: 1024
+  tls:
+    cert: ''
+    key: ''
+task_container_defaults:
+  LogPolicies: null
+  add_capabilities: null
+  bind_mounts: null
+  cpu_pod_spec: null
+  devices: null
+  drop_capabilities: null
+  gpu_pod_spec: null
+  kubernetes: null
+  network_mode: host
+  pbs: {}
+  shm_size_bytes: 4294967296
+  slurm: {}
+  work_dir: null
+telemetry:
+  cluster_id: ''
+  enabled: true
+  otel_enabled: false
+  otel_endpoint: localhost:4317
+  segment_master_key: '********'
+  segment_webui_key: '********'
+tensorboard_timeout: 300
+webhooks:
+  base_url: ''
+  signing_key: d8590cd34061
+
