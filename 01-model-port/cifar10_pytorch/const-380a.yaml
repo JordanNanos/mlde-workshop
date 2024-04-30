@@ -1,0 +1,25 @@
+name: cifar10_pytorch_demo_execution
+workspace: testing
+project: jordan
+resources: 
+  resource_pool: default
+  slots_per_trial: 1
+hyperparameters:
+  learning_rate: 1.0e-4
+  learning_rate_decay: 1.0e-6
+  layer1_dropout: 0.25
+  layer2_dropout: 0.25
+  layer3_dropout: 0.5
+  global_batch_size: 32
+records_per_epoch: 50000
+searcher:
+  name: single
+  metric: validation_error
+  max_length:
+    epochs: 32
+entrypoint: model_def:CIFARTrial
+min_validation_period:
+  epochs: 1
+profiling: 
+  enabled: true
+debug: true

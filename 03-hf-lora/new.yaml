@@ -1,0 +1,47 @@
+name: language modeling distributed demo on T4's
+debug: false
+workspace: Solution Engineering
+project: jordan
+
+
+environment:
+  image: >-
+    determinedai/environments-dev:python-3.10-pytorch-2.0-deepspeed-0.10.0-smartsim
+  environment_variables:
+    - NCCL_DEBUG=INFO
+    - HF_HOME=/hf_cache
+
+
+resources:
+  slots_per_trial: 4
+  resource_pool: A100
+
+
+
+bind_mounts:
+  - host_path: /nvmefs1/shared_nb/hf_cache
+    container_path: /hf_cache
+searcher:
+  name: single
+  max_length:
+    batches: 100
+  metric: eval_loss
+
+
+entrypoint: >-
+  python -m determined.launch.torch_distributed python run_clm.py
+  --model_name_or_path lmsys/vicuna-7b-v1.5 --dataset_name wikitext
+  --dataset_config_name wikitext-2-raw-v1 --do_train --do_eval --deepspeed
+  ds_configs/ds_config_stage_3_offload.json --gradient_checkpointing
+  --torch_dtype float16 --num_train_epochs 5 --logging_strategy steps
+  --logging_steps 1 --output_dir /tmp/test-clm --evaluation_strategy steps
+  --eval_steps 10 --save_total_limit 3 --seed 1337 --save_strategy steps
+  --save_steps 20 --per_device_train_batch_size 1 --per_device_eval_batch_size 1
+  --trust_remote_code true --fp16
+
+
+
+max_restarts: 0
+hyperparameters:
+  training_arguments:
+    learning_rate: 0.00001
