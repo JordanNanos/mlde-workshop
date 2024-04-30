@@ -1,0 +1,6 @@
+{
+  "determined_version": "0.26.3",
+  "steps_completed": 46890,
+  "framework": "torch-1.12.0+cu113",
+  "format": "pickle"
+}

@@ -1,0 +1,32 @@
+name: cifar10 starter
+
+workspace: new
+project: new-project
+
+hyperparameters:
+  learning_rate: 1.0e-4
+  learning_rate_decay: 1.0e-6
+  layer1_dropout: 0.25
+  layer2_dropout: 0.25
+  layer3_dropout: 0.5
+  global_batch_size: 32
+
+records_per_epoch: 50000
+
+searcher:
+  name: single
+  metric: validation_accuracy
+  max_length:
+    epochs: 16
+    
+profiling:
+  enabled: true
+
+resources:
+  slots_per_trial: 0
+  resource_pool: a100
+
+
+entrypoint: model_def:CIFARTrial
+min_validation_period:
+  epochs: 1
