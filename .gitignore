@@ -1,5 +1,6 @@
 04-finetune/OrpoLlama-3-8B/*
-lora.yaml
+*lora.yaml
 Orpo*
 results*
-llama3-test.yaml
+01-model-port/01-lora-single-slot/llama3-test.yaml
+llama3.yaml
